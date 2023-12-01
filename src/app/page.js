@@ -1,9 +1,10 @@
+'use client'
+
 import Countdown from './Countdown'
-import styles from './page.module.css'
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main >
      <Countdown/>
     </main>
   )
