@@ -1,11 +1,16 @@
 'use client'
 
-import Countdown from './Countdown'
+import Header from './Components/header'
+// import Countdown from './Countdown'
+import Hero  from './Components/Hero'
+
 
 export default function Home() {
   return (
     <main >
-     <Countdown/>
+     {/* <Countdown/> */}
+     <Header/>
+     <Hero/>
     </main>
   )
 }
