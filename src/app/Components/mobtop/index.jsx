@@ -116,8 +116,9 @@ const Mobtop = () => {
           href="https://www.ramestta.com/"
           target="_blank"
           rel="noopener noreferrer"
-        ></a>
-        <img width={30} src="/ramestta2.svg" />
+        >
+          <img width={30} src="/ramestta2.svg" />
+        </a>
         {/* <Typography ml={2} variant="h6" color="inherit" noWrap>
           Swap
         </Typography/> */}
