@@ -13,7 +13,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import SettingsIcon from "@mui/icons-material/Settings";
 
-export function BasicMenu() {
+export function BasicMenu({ mobile }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -35,13 +35,13 @@ export function BasicMenu() {
           bgcolor: "white",
           color: "black",
           fontWeight: "bold",
-          fontSize: "22px",
+          fontSize: "18px",
           // color: "rgb(252, 114, 255)",
         }}
         style={{
           maxWidth: "120px",
           maxHeight: "40px",
-          minWidth: "120px",
+          minWidth: mobile ? 20 : "120px",
           minHeight: "40px",
           borderRadius: "50px",
         }}
@@ -64,7 +64,7 @@ export function BasicMenu() {
     </div>
   );
 }
-export function BasicMenu2() {
+export function BasicMenu2({ mobile }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -86,13 +86,13 @@ export function BasicMenu2() {
           bgcolor: "rgb(252, 114, 255)",
           color: "white",
           fontWeight: "bold",
-          fontSize: "16px",
+          fontSize: "12px",
           // color: "rgb(252, 114, 255)",
         }}
         style={{
           maxWidth: "180px",
           maxHeight: "40px",
-          minWidth: "180px",
+          minWidth: mobile ? 20 : "180px",
           minHeight: "40px",
           borderRadius: "50px",
         }}
@@ -211,7 +211,7 @@ export default function SignIn() {
               }}
             />
 
-            <BasicMenu />
+            <BasicMenu mobile={mobile} />
           </Box>
           <Box
             position={"absolute"}
@@ -259,7 +259,7 @@ export default function SignIn() {
                 },
               }}
             />
-            <BasicMenu2 />
+            <BasicMenu2 mobile={mobile} />
           </Box>
           <Button
             type="submit"
