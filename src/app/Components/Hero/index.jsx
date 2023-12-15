@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import * as React from "react";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -119,6 +120,8 @@ export function BasicMenu2() {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+  const mobile = useMediaQuery("(max-width:600px)");
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -130,12 +133,6 @@ export default function SignIn() {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -144,10 +141,10 @@ export default function SignIn() {
         <Box
           borderRadius={5}
           sx={{
-            marginTop: 12,
+            marginTop: mobile ? 4 : 12,
             padding: 4,
-            height: 400,
-            width: 550,
+            height: mobile ? "80vh" : 400,
+            width: mobile ? "100%" : 550,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -188,8 +185,8 @@ export default function SignIn() {
             component="form"
             borderRadius={5}
             sx={{
-              height: 150,
-              width: 530,
+              height: mobile ? "25vh" : 150,
+              width: mobile ? "100%" : 530,
               p: 2,
               display: "flex",
               alignItems: "center",
@@ -237,8 +234,8 @@ export default function SignIn() {
             borderRadius={5}
             sx={{
               mt: 1,
-              height: 150,
-              width: 530,
+              height: mobile ? "25vh" : 150,
+              width: mobile ? "100%" : 530,
               p: 2,
               display: "flex",
               alignItems: "center",
@@ -278,7 +275,7 @@ export default function SignIn() {
             style={{
               maxWidth: "530px",
               maxHeight: "60px",
-              minWidth: "530px",
+              minWidth: mobile ? "100%" : "530px",
               minHeight: "60px",
               borderRadius: "15px",
             }}
