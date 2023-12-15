@@ -112,6 +112,11 @@ const Mobtop = () => {
       sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
     >
       <Toolbar sx={{ flexWrap: "wrap" }}>
+        <a
+          href="https://www.ramestta.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        ></a>
         <img width={30} src="/ramestta2.svg" />
         {/* <Typography ml={2} variant="h6" color="inherit" noWrap>
           Swap
