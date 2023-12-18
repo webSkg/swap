@@ -12,6 +12,7 @@ import {
   useAccountModal,
   useChainModal,
 } from "@rainbow-me/rainbowkit";
+import { useAccount } from "wagmi";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -57,6 +58,7 @@ const Header = () => {
   const { openConnectModal } = useConnectModal();
   const { openAccountModal } = useAccountModal();
   const { openChainModal } = useChainModal();
+  const { address } = useAccount();
   return (
     <AppBar
       position="static"
@@ -107,7 +109,7 @@ const Header = () => {
             Pools
           </Link>
         </nav>
-        {openConnectModal && (
+        {!address ? (
           <Button
             onClick={openConnectModal}
             href="#"
@@ -116,17 +118,16 @@ const Header = () => {
           >
             Connect
           </Button>
+        ) : (
+          <Button
+            onClick={openAccountModal}
+            href="#"
+            variant="outlined"
+            sx={{ my: 1, mx: 1.5 }}
+          >
+            Disconnect
+          </Button>
         )}
-        {openAccountModal && (
-          <button onClick={openAccountModal} type="button">
-            Open Account Modal
-          </button>
-        )}
-        {/* {openChainModal && (
-          <button onClick={openChainModal} type="button">
-            Open Chain Modal
-          </button>
-        )} */}
       </Toolbar>
     </AppBar>
   );

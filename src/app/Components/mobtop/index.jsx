@@ -11,6 +11,8 @@ import * as React from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useAccount } from "wagmi";
+import { useConnectModal, useAccountModal } from "@rainbow-me/rainbowkit";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -104,6 +106,9 @@ export function BasicMenu() {
 }
 
 const Mobtop = () => {
+  const { address } = useAccount();
+  const { openAccountModal } = useAccountModal();
+  const { openConnectModal } = useConnectModal();
   return (
     <AppBar
       position="static"
@@ -134,21 +139,24 @@ const Mobtop = () => {
             /> */}
           </Search>
         </Box>
-
-        {openConnectModal && (
+        {!address ? (
           <Button
             onClick={openConnectModal}
             href="#"
             variant="outlined"
-            sx={{ my: 1, mx: 1.5 }}
+            sx={{ my: 1, mx: 1 }}
           >
             Connect
           </Button>
-        )}
-        {openAccountModal && (
-          <button onClick={openAccountModal} type="button">
-            Open Account Modal
-          </button>
+        ) : (
+          <Button
+            onClick={openAccountModal}
+            href="#"
+            variant="outlined"
+            sx={{ my: 1, mx: 1 }}
+          >
+            Disconnect
+          </Button>
         )}
       </Toolbar>
     </AppBar>

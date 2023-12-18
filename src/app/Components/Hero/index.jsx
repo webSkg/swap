@@ -12,6 +12,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { useAccount } from "wagmi";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 export function BasicMenu({ mobile }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -121,6 +123,8 @@ const defaultTheme = createTheme();
 
 export default function SignIn() {
   const mobile = useMediaQuery("(max-width:600px)");
+  const { openConnectModal } = useConnectModal();
+  const { address } = useAccount();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -261,27 +265,52 @@ export default function SignIn() {
             />
             <BasicMenu2 mobile={mobile} />
           </Box>
-          <Button
-            type="submit"
-            fullWidth
-            // variant="contained"
-            sx={{
-              mt: 1,
-              bgcolor: "rgb(255, 239, 255)",
-              color: "rgb(252, 114, 255)",
-              fontSize: "15px",
-              fontWeight: "bold",
-            }}
-            style={{
-              maxWidth: "530px",
-              maxHeight: "60px",
-              minWidth: mobile ? "100%" : "530px",
-              minHeight: "60px",
-              borderRadius: "15px",
-            }}
-          >
-            Connect Wallet
-          </Button>
+          {!address ? (
+            <Button
+              onClick={openConnectModal}
+              type="submit"
+              fullWidth
+              // variant="contained"
+              sx={{
+                mt: 1,
+                bgcolor: "rgb(255, 239, 255)",
+                color: "rgb(252, 114, 255)",
+                fontSize: "15px",
+                fontWeight: "bold",
+              }}
+              style={{
+                maxWidth: "530px",
+                maxHeight: "60px",
+                minWidth: mobile ? "100%" : "530px",
+                minHeight: "60px",
+                borderRadius: "15px",
+              }}
+            >
+              Connect Wallet
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              fullWidth
+              // variant="contained"
+              sx={{
+                mt: 1,
+                bgcolor: "rgb(255, 239, 255)",
+                color: "rgb(252, 114, 255)",
+                fontSize: "15px",
+                fontWeight: "bold",
+              }}
+              style={{
+                maxWidth: "530px",
+                maxHeight: "60px",
+                minWidth: mobile ? "100%" : "530px",
+                minHeight: "60px",
+                borderRadius: "15px",
+              }}
+            >
+              Swap
+            </Button>
+          )}
         </Box>
 
         {/* <Box
