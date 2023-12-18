@@ -7,6 +7,11 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { alpha, styled } from "@mui/material/styles";
+import {
+  useConnectModal,
+  useAccountModal,
+  useChainModal,
+} from "@rainbow-me/rainbowkit";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -49,6 +54,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Header = () => {
+  const { openConnectModal } = useConnectModal();
+  const { openAccountModal } = useAccountModal();
+  const { openChainModal } = useChainModal();
   return (
     <AppBar
       position="static"
@@ -99,9 +107,26 @@ const Header = () => {
             Pools
           </Link>
         </nav>
-        <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-          Connect
-        </Button>
+        {openConnectModal && (
+          <Button
+            onClick={openConnectModal}
+            href="#"
+            variant="outlined"
+            sx={{ my: 1, mx: 1.5 }}
+          >
+            Connect
+          </Button>
+        )}
+        {openAccountModal && (
+          <button onClick={openAccountModal} type="button">
+            Open Account Modal
+          </button>
+        )}
+        {/* {openChainModal && (
+          <button onClick={openChainModal} type="button">
+            Open Chain Modal
+          </button>
+        )} */}
       </Toolbar>
     </AppBar>
   );
