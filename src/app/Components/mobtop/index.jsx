@@ -135,9 +135,21 @@ const Mobtop = () => {
           </Search>
         </Box>
 
-        <Button href="#" variant="outlined" sx={{ my: 1, mx: 1 }}>
-          Connect
-        </Button>
+        {openConnectModal && (
+          <Button
+            onClick={openConnectModal}
+            href="#"
+            variant="outlined"
+            sx={{ my: 1, mx: 1.5 }}
+          >
+            Connect
+          </Button>
+        )}
+        {openAccountModal && (
+          <button onClick={openAccountModal} type="button">
+            Open Account Modal
+          </button>
+        )}
       </Toolbar>
     </AppBar>
   );
