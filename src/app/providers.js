@@ -19,6 +19,7 @@ import {
   base,
   zora,
   goerli,
+  
 } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 

@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
-import * as React from "react";
+// import * as React from "react";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useAccount } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
+import React, { useState } from "react";
 
 export function BasicMenu({ mobile }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -125,14 +126,14 @@ export default function SignIn() {
   const mobile = useMediaQuery("(max-width:600px)");
   const { openConnectModal } = useConnectModal();
   const { address } = useAccount();
+  // for swap button
+  const [value, setValue] = useState("BasicMenu");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const handleSwap = () => {
+    // Toggle between two values
+    setValue((prevValue) =>
+      prevValue === "BasicMenu" ? "BasicMenu2" : "BasicMenu"
+    );
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -225,12 +226,15 @@ export default function SignIn() {
             borderRadius={2}
           >
             <Box
-              position={"relative"}
+              position={"initial"}
               padding={"5px"}
               bgcolor="#f5f5f5"
               borderRadius={2}
             >
-              <SwapVertIcon />
+              <SwapVertIcon
+                onClick={handleSwap}
+                style={{ cursor: "pointer", fontSize: 25, color: "blue" }}
+              />
             </Box>
           </Box>
           <Box

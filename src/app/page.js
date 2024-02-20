@@ -7,6 +7,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Mobheader from "./Components/mobheader";
 import Mobtop from "./Components/mobtop";
 
+
 export default function Home() {
   const mobile = useMediaQuery("(max-width:600px)");
 
@@ -24,6 +25,7 @@ export default function Home() {
       {!mobile && <Header />}
       <Hero />
       {mobile && <Mobheader />}
+      {/* <Link></Link> */}
     </main>
   );
 }
